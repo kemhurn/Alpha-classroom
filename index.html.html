@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Classroom Layout</title>
+    <style>
+        .classroom {
+            width: 600px;
+            height: 400px;
+            border: 2px solid #333;
+            position: relative;
+            background-color: #f3f3f3;
+            margin-top: 20px;
+        }
+        .desk {
+            width: 50px;
+            height: 50px;
+            background-color: #8aacc8;
+            position: absolute;
+            cursor: move;
+            text-align: center;
+            line-height: 50px;
+            color: white;
+            font-weight: bold;
+        }
+        .heading {
+            font-size: 18px;
+            font-weight: bold;
+            text-align: center;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+
+<h2 class="heading">ห้องเรียน Gen Alpha ควรเป็นแบบไหน ช่วยฉันจัดหน่อย</h2>
+<div class="classroom" id="classroom">
+    <div class="desk" draggable="true" ondragstart="drag(event)" id="desk1" style="top: 30px; left: 20px;">1</div>
+    <div class="desk" draggable="true" ondragstart="drag(event)" id="desk2" style="top: 80px; left: 100px;">2</div>
+    <div class="desk" draggable="true" ondragstart="drag(event)" id="desk3" style="top: 150px; left: 200px;">3</div>
+    <div class="desk" draggable="true" ondragstart="drag(event)" id="desk4" style="top: 50px; left: 300px;">4</div>
+    <div class="desk" draggable="true" ondragstart="drag(event)" id="desk5" style="top: 200px; left: 50px;">5</div>
+    <div class="desk" draggable="true" ondragstart="drag(event)" id="desk6" style="top: 250px; left: 150px;">6</div>
+    <div class="desk" draggable="true" ondragstart="drag(event)" id="desk7" style="top: 100px; left: 350px;">7</div>
+    <div class="desk" draggable="true" ondragstart="drag(event)" id="desk8" style="top: 300px; left: 250px;">8</div>
+    <div class="desk" draggable="true" ondragstart="drag(event)" id="desk9" style="top: 150px; left: 400px;">9</div>
+    <div class="desk" draggable="true" ondragstart="drag(event)" id="desk10" style="top: 20px; left: 500px;">10</div>
+    <div class="desk" draggable="true" ondragstart="drag(event)" id="desk11" style="top: 350px; left: 100px;">11</div>
+    <div class="desk" draggable="true" ondragstart="drag(event)" id="desk12" style="top: 220px; left: 400px;">12</div>
+    <div class="desk" draggable="true" ondragstart="drag(event)" id="desk13" style="top: 270px; left: 500px;">13</div>
+    <div class="desk" draggable="true" ondragstart="drag(event)" id="desk14" style="top: 320px; left: 50px;">14</div>
+    <div class="desk" draggable="true" ondragstart="drag(event)" id="desk15" style="top: 180px; left: 300px;">15</div>
+</div>
+
+<script>
+    let currentDesk = null;
+
+    function drag(event) {
+        currentDesk = event.target;
+    }
+
+    document.getElementById("classroom").addEventListener("dragover", function(event) {
+        event.preventDefault();
+    });
+
+    document.getElementById("classroom").addEventListener("drop", function(event) {
+        event.preventDefault();
+        if (currentDesk) {
+            currentDesk.style.left = (event.clientX - this.offsetLeft - currentDesk.offsetWidth / 2) + "px";
+            currentDesk.style.top = (event.clientY - this.offsetTop - currentDesk.offsetHeight / 2) + "px";
+            currentDesk = null;
+        }
+    });
+</script>
+
+</body>
+</html>
